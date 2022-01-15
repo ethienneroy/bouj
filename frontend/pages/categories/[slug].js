@@ -12,9 +12,9 @@ const CategoryPage = ({ category }) => {
   return (
     <div>
       <Head>
-        <title>{category.name} products</title>
+        <title>{category.attributes.name} products</title>
       </Head>
-      <ProductsList products={category.products} />
+      {/*<ProductsList products={category.products} />*/}
     </div>
   )
 }
@@ -31,7 +31,7 @@ export async function getStaticPaths() {
   return {
     paths: categories.map((_category) => {
       return {
-        params: { slug: _category.slug },
+        params: { slug: _category.attributes.slug },
       }
     }),
     fallback: true,

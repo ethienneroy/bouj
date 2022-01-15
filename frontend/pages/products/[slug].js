@@ -14,7 +14,7 @@ const ProductPage = ({ product }) => {
   return (
     <div className="m-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 mt-8">
       <Head>
-        <title>{product.title} product</title>
+        <title>{product.attributes.title} product</title>
       </Head>
       <div className="rounded-t-lg pt-2 pb-2 m-auto h-40 w-40">
         <NextImage media={product.image} />
@@ -22,9 +22,9 @@ const ProductPage = ({ product }) => {
       <div className="w-full p-5 flex flex-col justify-between">
         <div>
           <h4 className="mt-1 font-semibold text-lg leading-tight truncate text-gray-700">
-            {product.title} - ${product.price}
+            {product.attributes.title} - ${product.attributes.price}
           </h4>
-          <div className="mt-1 text-gray-600">{product.description}</div>
+          <div className="mt-1 text-gray-600">{product.attributes.description}</div>
         </div>
 
         {product.status === "published" ? (
@@ -74,7 +74,7 @@ export async function getStaticPaths() {
   return {
     paths: products.map((_product) => {
       return {
-        params: { slug: _product.slug },
+        params: { slug: _product.attributes.slug },
       }
     }),
     fallback: true,
